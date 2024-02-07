@@ -1,0 +1,59 @@
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.nav-link {
+    color: #fff !important;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.footer {
+    background-color: #626364;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.footer small {
+    display: block;
+    text-align: center;
+    color: #888;
+}
+
+/* Custom navbar styling */
+.navbar {
+    background-color: #007bff; /* Primary color */
+    padding: 1rem 1rem; /* Adjust padding */
+}
+
+.nav-link {
+    color: #ffffff !important; /* Text color */
+    font-size: 18px; /* Text size */
+}
+
+.navbar-brand {
+    font-size: 24px; /* Brand text size */
+    font-weight: bold;
+}
+
+.sticky-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1020; /* High z-index to ensure it stays above other content */
+}
+
+/* Add more styles as needed */
+/* assets/style.css */
+.graph-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link.active {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white !important; /* Ensure text color overrides default */
+}
