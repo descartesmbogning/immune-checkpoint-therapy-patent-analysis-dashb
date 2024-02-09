@@ -6,11 +6,11 @@ import pandas as pd
 import plotly.express as px
 
 # Load your data (Make sure the path is correct)
-df_appl_trend = pd.read_csv('./data/applicant_year_table.csv')
+df_appl_trend = pd.read_csv('../data/applicant_year_table.csv')
 # Load inventor data
-df_inv_trend = pd.read_csv('./data/inventor_year_table.csv')
+df_inv_trend = pd.read_csv('../data/inventor_year_table.csv')
 # Load inventor data
-df_full_data = pd.read_csv('./data/full_data_table.csv')
+df_full_data = pd.read_csv('../data/full_data_table.csv')
 
 # Aggregate patent count per year
 df_appl_trend2 = df_appl_trend[['Lens ID','Application Year']].drop_duplicates()
@@ -20,7 +20,7 @@ fig_patents_over_time = px.line(global_yearly_counts, x='Application Year', y='T
 fig_patents_over_time.update_layout(title='Global Trend of Patent Contributions Over Years')
 
 ##
-df_country_trend = pd.read_csv('./data/applicant_country_year_table.csv')
+df_country_trend = pd.read_csv('../data/applicant_country_year_table.csv')
 
 # Ensure 'Application Year' is of type int for proper sorting and comparison
 df_country_trend['Application Year'] = df_country_trend['Application Year'].astype(int)
@@ -89,7 +89,7 @@ fig_appl_country_trend.update_layout(
 import plotly.express as px
 import pandas as pd
 
-df_jurisdiction_trend = pd.read_csv('./data/jurisdiction_year_table.csv')
+df_jurisdiction_trend = pd.read_csv('../data/jurisdiction_year_table.csv')
 
 # Ensure 'Application Year' is of type int for proper sorting and comparison
 df_jurisdiction_trend['Application Year'] = df_jurisdiction_trend['Application Year'].astype(int)

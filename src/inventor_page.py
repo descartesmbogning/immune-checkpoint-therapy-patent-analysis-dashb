@@ -11,8 +11,8 @@ from dash.dependencies import Input, Output
 import json  # Import json for parsing clickData
 
 # Load your data
-df = pd.read_csv('./data/inventor_table.csv')
-df_trend = pd.read_csv('./data/inventor_year_table.csv')
+df = pd.read_csv('../data/inventor_table.csv')
+df_trend = pd.read_csv('../data/inventor_year_table.csv')
 
 # Drop 'Unnamed: 0' column if it exists
 if 'Unnamed: 0' in df.columns:
@@ -243,7 +243,7 @@ def update_inventor_line_chart(all_rows_data, slctd_row_indices, clickData):
             selected_inventors.append(clicked_inventor)
 
     # Aggregate data: count patents per year for each inventor
-    inventor_yearly_counts = df_trend.groupby(['Application Year', 'Inventor']).size().reset_index(name='Patent Count')
+    inventor_yearly_counts = df_trend.groupby(['Application Year', 'Inventor',]).size().reset_index(name='Patent Count',)
 
     # Create the line chart
     if selected_inventors:
@@ -253,7 +253,7 @@ def update_inventor_line_chart(all_rows_data, slctd_row_indices, clickData):
     else:
         # When no inventors are selected, show the global trend
         df_trend2 = df_trend[['Lens ID','Application Year']].drop_duplicates()
-        global_yearly_counts = df_trend2.groupby(['Application Year']).size().reset_index(name='Total Patents')
+        global_yearly_counts = df_trend2.groupby(['Application Year',]).size().reset_index(name='Total Patents',)
         fig = px.line(global_yearly_counts, x='Application Year', y='Total Patents',markers=True)
         fig.update_layout(title='Global Trend of Patent Contributions Over Years')
     

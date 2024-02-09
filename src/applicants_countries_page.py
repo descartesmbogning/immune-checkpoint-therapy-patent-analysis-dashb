@@ -9,8 +9,8 @@ import numpy as np
 from dash.dash_table.Format import Format, Scheme
 
 # Load your data
-df = pd.read_csv('./data/applicant_country_table.csv')
-df_trend = pd.read_csv('./data/applicant_country_year_table.csv')
+df = pd.read_csv('../data/applicant_country_table.csv')
+df_trend = pd.read_csv('../data/applicant_country_year_table.csv')
 
 # Drop 'Unnamed: 0' column if it exists
 if 'Unnamed: 0' in df.columns:
