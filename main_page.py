@@ -14,7 +14,7 @@ df_full_data = pd.read_csv('./data/full_data_table.csv')
 
 # Aggregate patent count per year
 df_appl_trend2 = df_appl_trend[['Lens ID','Application Year']].drop_duplicates()
-global_yearly_counts = df_appl_trend2.groupby(['Application Year']).size().reset_index(name='Total Patents')
+global_yearly_counts = df_appl_trend2.groupby(['Application Year',]).size().reset_index(name='Total Patents')
 fig_patents_over_time = px.line(global_yearly_counts, x='Application Year', y='Total Patents',markers=True  # Add markers for each data point
 )
 fig_patents_over_time.update_layout(title='Global Trend of Patent Contributions Over Years')
@@ -26,7 +26,7 @@ df_country_trend = pd.read_csv('./data/applicant_country_year_table.csv')
 df_country_trend['Application Year'] = df_country_trend['Application Year'].astype(int)
 
 # Calculate the total patents per country per year
-df_total_patents = df_country_trend.groupby(['Application Year', 'Applicant country', 'iso_alpha', 'Region']).size().reset_index(name='Total Patents')
+df_total_patents = df_country_trend.groupby(['Application Year', 'Applicant country', 'iso_alpha', 'Region',]).size().reset_index(name='Total Patents')
 
 # Create a complete DataFrame of all combinations of 'Application Year' and 'Applicant country'
 all_years = df_country_trend['Application Year'].unique()
@@ -41,11 +41,11 @@ df_full = df_full.sort_values(by=['Applicant country', 'Application Year'])
 df_full['Total Patents'] = df_full['Total Patents'].fillna(0)
 
 # Calculate cumulative patents per country per year, forward filling the missing values
-df_full['Cumulative Patents'] = df_full.groupby(['Applicant country'])['Total Patents'].cumsum().fillna(method='ffill')
+df_full['Cumulative Patents'] = df_full.groupby(['Applicant country',])['Total Patents'].cumsum().ffill()
 
 # Fill NaN in 'iso_alpha', 'Region', and 'Cumulative Patents' after merging
-df_full['iso_alpha'] = df_full.groupby('Applicant country')['iso_alpha'].ffill().bfill()
-df_full['Region'] = df_full.groupby('Applicant country')['Region'].ffill().bfill()
+df_full['iso_alpha'] = df_full.groupby('Applicant country',)['iso_alpha'].ffill().bfill()
+df_full['Region'] = df_full.groupby('Applicant country',)['Region'].ffill().bfill()
 df_full['Cumulative Patents'] = df_full['Cumulative Patents'].fillna(0)  # Fill NaN values with 0
 
 # Get the latest year for the default display
@@ -95,7 +95,7 @@ df_jurisdiction_trend = pd.read_csv('./data/jurisdiction_year_table.csv')
 df_jurisdiction_trend['Application Year'] = df_jurisdiction_trend['Application Year'].astype(int)
 
 # Calculate the total patents per jurisdiction per year
-df_total_patents = df_jurisdiction_trend.groupby(['Application Year', 'Jurisdiction', 'iso_alpha', 'Region']).size().reset_index(name='Total Patents')
+df_total_patents = df_jurisdiction_trend.groupby(['Application Year', 'Jurisdiction', 'iso_alpha', 'Region',]).size().reset_index(name='Total Patents')
 
 # Create a complete DataFrame of all combinations of 'Application Year' and 'Jurisdiction'
 all_years = df_jurisdiction_trend['Application Year'].unique()
@@ -110,11 +110,11 @@ df_full = df_full.sort_values(by=['Jurisdiction', 'Application Year'])
 df_full['Total Patents'] = df_full['Total Patents'].fillna(0)
 
 # Calculate cumulative patents per jurisdiction per year, forward filling the missing values
-df_full['Cumulative Patents'] = df_full.groupby(['Jurisdiction'])['Total Patents'].cumsum().fillna(method='ffill')
+df_full['Cumulative Patents'] = df_full.groupby(['Jurisdiction',])['Total Patents'].cumsum().ffill()
 
 # Fill NaN in 'iso_alpha', 'Region', and 'Cumulative Patents' after merging
-df_full['iso_alpha'] = df_full.groupby('Jurisdiction')['iso_alpha'].ffill().bfill()
-df_full['Region'] = df_full.groupby('Jurisdiction')['Region'].ffill().bfill()
+df_full['iso_alpha'] = df_full.groupby('Jurisdiction',)['iso_alpha'].ffill().bfill()
+df_full['Region'] = df_full.groupby('Jurisdiction',)['Region'].ffill().bfill()
 df_full['Cumulative Patents'] = df_full['Cumulative Patents'].fillna(0)  # Fill NaN values with 0
 
 # Get the latest year for the default display
