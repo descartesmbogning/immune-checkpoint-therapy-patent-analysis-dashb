@@ -7,6 +7,7 @@ import main_page
 import applicants_page
 import applicants_countries_page
 import jurisdiction_page
+import os
 
 # app = Dash(__name__, suppress_callback_exceptions=True)
 app.layout = html.Div([
@@ -36,4 +37,4 @@ def display_page(pathname):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, host='0.0.0.0', port=int(os.environ.get("PORT", 8080)))
